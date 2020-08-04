@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     while (bytes[0] != 0xff && bytes[1] != 0xd8 && bytes[2] != 0xff && (bytes[3] & 0xf0) != 0xe0);
     // Above: Two methods for finding if 4th byte is 0xe0 through 0xef:
     // (bytes[3] >= 0xe0)
-    // OR Bitwise arithmetic: multiplying? each bit with bitwise '&' so that last 4 bits == 0:
+    // OR Bitwise arithmetic: multiplying each bit with bitwise '&' so that last 4 bits == 0:
     // (bytes[3] & 0xf0) == 0xe0)
     
     
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     {
         // Increments the name of a jpeg by one each time a new jpeg file needs to be written.
         // Printing a name not to the output, but to a string -> using sprintf()
-        char *filestring = malloc(sizeof(char) * 3);
+        char *filestring = (char*) malloc(sizeof(char) * 3);
         sprintf(filestring, "%03i.jpg", jpeg_name);
         jpeg_name ++;
         FILE *jpeg = fopen(filestring, "w");
